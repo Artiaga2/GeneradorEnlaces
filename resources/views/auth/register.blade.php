@@ -76,6 +76,6 @@
 </div>
 
     @push('scripts')
-        <script src="../../assets/js/validacion.js"></script>
+        <script src="{{ asset('js/validaciones/validacion.js') }}" defer></script>
     @endpush
 @endsection
