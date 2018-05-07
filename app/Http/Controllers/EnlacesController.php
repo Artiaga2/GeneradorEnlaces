@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enlace;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EnlacesController extends Controller
 {
@@ -24,7 +25,7 @@ class EnlacesController extends Controller
      */
     public function create()
     {
-        //
+        return view('enlaces.create');
     }
 
     /**
@@ -35,7 +36,16 @@ class EnlacesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Enlace::create([
+
+            'nombre'        => $request->input('nombre'),
+            'titulo'        => $request->input('titulo'),
+            'tipo'          => $request->input('tipo'),
+            'descripcion'   => $request->input('descripcion')
+
+        ]);
+
+        return redirect('/home');
     }
 
     /**
@@ -46,7 +56,7 @@ class EnlacesController extends Controller
      */
     public function show(Enlace $enlace)
     {
-        //
+
     }
 
     /**
