@@ -50,4 +50,8 @@
         </div>
     @endauth
 
+    @push('scripts')
+        <script src="{{ asset('js/validaciones/validacion.js') }}" defer></script>
+    @endpush
+
 @endsection

@@ -1,6 +1,7 @@
 $(function(){
 $("#name").on('change', validarNombre);
 $("#email").on('change', validarCorreo);
+$("#titulo").on('change', validarTitulo);
 });
 
 function validarNombre() {
@@ -51,3 +52,24 @@ function validarCorreo() {
     return resultado;
 }
 
+function validarTitulo() {
+    let resultado = false;
+    let inputTitulo = $("#titulo");
+    inputTitulo.removeClass("is-invalid");
+    inputTitulo.removeClass("is-valid");
+    let valorTitulo = inputTitulo.val().trim();
+    if (valorTitulo !== "" && valorTitulo.match(/^[aA-zZ\s]{5,}$/)){
+        resultado = true;
+        inputTitulo.addClass("is-valid");
+        if (inputTitulo.next().length > 0){
+            inputTitulo.next().remove();
+        }
+    } else {
+        inputTitulo.addClass("is-invalid");
+        if (inputTitulo.next().length === 0){
+            inputTitulo.after("<div class='text-danger'>ERROR EN EL TITULO</div>")
+        }
+    }
+
+    return resultado;
+}
