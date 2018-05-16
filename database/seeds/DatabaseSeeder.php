@@ -11,6 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $users = factory(App\User::class, 10)->create();
+
+        $users->each(function (App\User $user) use ($users) {
+            factory(App\Enlace::class, 10)->create([
+                'user_id' => $user->id
+            ]);
+        });
     }
 }
