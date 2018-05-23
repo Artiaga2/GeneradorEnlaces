@@ -92,4 +92,9 @@ class EnlacesController extends Controller
     {
         //
     }
+
+    protected function validacionAxios(UserAjaxFormRequest $request){
+        //Obtenermos todos los valores y devolvemos un array vacio
+        return array();
+    }
 }

@@ -22,4 +22,5 @@ Route::get('/home', 'HomeController@home')->name('home');
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/crear', 'EnlacesController@create');
     Route::post('/crear', 'EnlacesController@store');
+    Route::post('/crear/validar', 'Auth\RegisterController@validacionAjax');
 });
