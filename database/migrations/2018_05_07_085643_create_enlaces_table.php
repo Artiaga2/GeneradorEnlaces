@@ -16,11 +16,13 @@ class CreateEnlacesTable extends Migration
         Schema::create('enlaces', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
+            $table->integer('categoria_id');
             $table->string('titulo');
+            $table->string('uri');
             $table->string('slug')->unique();
-            $table->string('tipo');
+            $table->enum('tipo',['enlace', 'PDF', 'imagen', 'nota'])->default('enlace');
             $table->string('descripcion');
-
+            $table->enum('privacidad',['publico', 'privado'])->default('publico');
             $table->timestamps();
         });
     }
