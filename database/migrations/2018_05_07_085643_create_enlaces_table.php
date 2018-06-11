@@ -15,8 +15,10 @@ class CreateEnlacesTable extends Migration
     {
         Schema::create('enlaces', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('categoria_id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('categoria_id')->unsigned();
+            $table->integer('comentario_id')->unsigned();
+            $table->integer('like_id')->unsigned();
             $table->string('titulo');
             $table->string('uri');
             $table->string('slug')->unique();
@@ -24,7 +26,10 @@ class CreateEnlacesTable extends Migration
             $table->string('descripcion');
             $table->enum('privacidad',['publico', 'privado'])->default('publico');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
+
     }
 
     /**

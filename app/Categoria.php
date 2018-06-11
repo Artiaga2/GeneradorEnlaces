@@ -8,6 +8,6 @@ class Categoria extends Model
 {
     public function enlaces()
     {
-        return $this->belongsToMany(Enlace::class);
+        return $this->hasMany(Enlace::class);
     }
 }

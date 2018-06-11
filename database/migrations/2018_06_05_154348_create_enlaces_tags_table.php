@@ -13,12 +13,12 @@ class CreateEnlacesTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('enlaces_tags', function (Blueprint $table) {
-            $table->integer('enlaces_id')->unsigned();
-            $table->integer('tags_id')->unsigned();
-            $table->primary(['enlaces_id','tags_id']);
-            $table->foreign('enlaces_id')->references('id')->on('enlaces')->onDelete('cascade');
-            $table->foreign('tags_id')->references('id')->on('tags')->onDelete('cascade');
+        Schema::create('enlace_tag', function (Blueprint $table) {
+            $table->integer('enlace_id')->unsigned();
+            $table->integer('tag_id')->unsigned();
+            $table->primary(['enlace_id','tag_id']);
+            $table->foreign('enlace_id')->references('id')->on('enlaces')->onDelete('cascade');
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
         });
     }
 
@@ -29,6 +29,6 @@ class CreateEnlacesTagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('enlaces_tags');
+        Schema::dropIfExists('enlace_tag');
     }
 }
