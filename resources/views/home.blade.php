@@ -1,27 +1,37 @@
-@extends('layouts.app')
+@extends('public.layouts.app')
 
 @section('content')
-    <div class="container my-5">
-        <table id="tablaEnlaces" class="table table-dark table-striped table-bordered">
-            <thead class="thead-dark">
-            <tr>
-                <th>Titulo</th>
-                <th>Tipo</th>
-                <th>Descripcion</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($enlaces as $enlace)
-                <tr>
-                    <td>
-                        {{$enlace->titulo}}
-                    </td>
-                    <td>{{$enlace->tipo}}</td>
-                    <td>{{$enlace->descripcion}}</td>
 
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+    <div class="container">
+
+        <div class="row col-10">
+            @include('public.partials.sidebar')
+            <div class="articles col-9">
+
+
+
+                <nav aria-label="Page navigation example">
+                    {{ $enlaces->appends(request()->query())->links() }}
+                </nav>
+
+
+
+                @foreach($enlaces as $enlace)
+                    <div class="article">
+                        <h5 class="card-title"><a href="/enlaces/{{ $enlace->slug }}">{{ $enlace->titulo }}</a></h5>
+                        <a href="/enlaces/{{$enlace->uri}}">{{$enlace->uri}}</a>
+                        <p align="right" class="blog-post-meta">{{ $enlace->created_at->toFormattedDateString() }}<br>
+                            Creado por: <a href="/enlaces/{{ $enlace->user->slug }}"> {{$enlace->user->name}}</a></p>
+                        <p class="excerpt">{{ $enlace->excerpt }}</p>
+                        @include('public.partials.tags')
+                        <a href="/enlaces/{{ $enlace->slug }}" class="btn btn-primary">Read more</a>
+                    </div>
+                @endforeach
+                <nav aria-label="Page navigation example">
+                    {{ $enlaces->appends(request()->query())->links() }}
+                </nav>
+            </div>
+
+        </div>
     </div>
 @endsection

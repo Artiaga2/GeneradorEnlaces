@@ -17,7 +17,7 @@ class CreateLoginTable extends Migration
             $table->increments('id');
             $table->string('navegador');
             $table->integer('Ip');
-            $table->string('user_id');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

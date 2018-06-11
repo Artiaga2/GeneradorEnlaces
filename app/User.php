@@ -26,4 +26,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function enlaces(){
+
+        return $this->hasMany(Enlace::class)->latest();
+    }
+
+
+    public function login(){
+
+        return $this->belongsTo(Login::class);
+    }
 }

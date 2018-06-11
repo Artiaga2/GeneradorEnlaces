@@ -11,12 +11,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $users = factory(App\User::class, 10)->create();
 
-        $users->each(function (App\User $user) use ($users) {
-            factory(App\Enlace::class, 10)->create([
-                'user_id' => $user->id
-            ]);
+        factory(App\User::class, 1)->create([
+            'id' => 1,
+            'login_id' => 1
+        ]);
+
+        factory(App\Enlace::class, 1)->create(['user_id' => 1])->each(function ($enlace){
+            $enlace->tags()->save(factory(App\Tag::class)->make());
         });
+
+        factory(App\Comentario::class, 1)->create([
+            'enlace_id' => 1
+        ]);
+
     }
+
+
+
 }
