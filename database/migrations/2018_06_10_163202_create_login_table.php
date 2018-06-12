@@ -13,11 +13,12 @@ class CreateLoginTable extends Migration
      */
     public function up()
     {
-        Schema::create('login', function (Blueprint $table) {
+        Schema::create('logins', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('navegador');
-            $table->integer('Ip');
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unique()->unsigned();
+            $table->string('navegador')->nullable();
+            $table->string('Ip')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateLoginTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('login');
+        Schema::dropIfExists('logins');
     }
 }

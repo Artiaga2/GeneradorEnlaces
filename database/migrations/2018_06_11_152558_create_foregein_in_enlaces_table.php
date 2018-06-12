@@ -14,7 +14,7 @@ class CreateForegeinInEnlacesTable extends Migration
     public function up()
     {
         Schema::table('enlaces', function (Blueprint $table) {
-            $table->foreign('like_id')->references('id')->on('like')->onDelete('cascade');
+            $table->foreign('like_id')->references('id')->on('likes')->onDelete('cascade');
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
             $table->foreign('comentario_id')->references('id')->on('comentarios')->onDelete('cascade');
         });
@@ -31,7 +31,6 @@ class CreateForegeinInEnlacesTable extends Migration
             $table->dropForeign(['like_id']);
             $table->dropForeign(['categoria_id']);
             $table->dropForeign(['comentario_id']);
-
             $table->dropColumn('like_id');
             $table->dropColumn('categoria_id');
             $table->dropColumn('comentario_id');

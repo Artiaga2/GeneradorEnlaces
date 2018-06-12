@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Login;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -63,10 +64,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+
+
+       $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'slug' => str_slug($data['name']),
             'password' => Hash::make($data['password']),
+
         ]);
+
+
+
+        Login::create([
+            'user_id' => $user->id
+        ]);
+
+
+
+        return $user;
     }
 }

@@ -14,6 +14,7 @@ class CreateEnlacesTagsTable extends Migration
     public function up()
     {
         Schema::create('enlace_tag', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->integer('enlace_id')->unsigned();
             $table->integer('tag_id')->unsigned();
             $table->primary(['enlace_id','tag_id']);

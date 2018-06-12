@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateForegeinInUsersTable extends Migration
+class CreateForegeinInLoginTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateForegeinInUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreign('login_id')->references('id')->on('login')->onDelete('cascade');
+        Schema::table('logins', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -25,9 +25,10 @@ class CreateForegeinInUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign('users_login_id_foreign');
-            $table->dropColumn('login_id');
+        Schema::table('logins', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+
+            $table->dropColumn('user_id');
         });
     }
 }

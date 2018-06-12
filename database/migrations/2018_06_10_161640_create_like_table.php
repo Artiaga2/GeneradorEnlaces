@@ -13,10 +13,11 @@ class CreateLikeTable extends Migration
      */
     public function up()
     {
-        Schema::create('like', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('positivo');
-            $table->string('negativo');
+            $table->integer('positivo');
+            $table->integer('negativo');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateLikeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('like');
+        Schema::dropIfExists('likes');
     }
 }
