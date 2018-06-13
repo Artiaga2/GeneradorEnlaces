@@ -13,6 +13,7 @@
     <div class="section">
         <h3>Ultimos enlaces añadidos</h3>
         <ul class="list-group">
+
             @foreach($enlaces as $enlace)
                 <li class="list-group-item"><a href="/enlaces/{{ $enlace->slug }}">{{ $enlace->titulo }}</a>
 

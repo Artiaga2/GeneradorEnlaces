@@ -24,4 +24,25 @@ class Enlace extends Model
         return $this->hasMany(Comentario::class);
     }
 
+
+    public function scopeFilter($query, $filters)
+    {
+        if ( isset($filters['month']) ){
+            if ( $month = $filters['month'] ) {
+                $query->whereMonth('created_at', Carbon::parse($month)->month);
+            }
+        }
+
+        if ( isset($filters['year']) ){
+            if ( $year = $filters['year'] ) {
+                $query->whereYear('created_at', $year);
+            }
+        }
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
 }

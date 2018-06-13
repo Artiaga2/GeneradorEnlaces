@@ -17,9 +17,9 @@ class CreateEnlacesTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('categoria_id')->unsigned();
-            $table->integer('comentario_id')->unsigned();
-            $table->integer('like_id')->unsigned();
+            $table->integer('categoria_id')->unsigned()->nullable();
+            $table->integer('comentario_id')->unsigned()->nullable();
+            $table->integer('like_id')->unsigned()->nullable();
             $table->string('titulo');
             $table->string('uri');
             $table->string('slug')->unique();

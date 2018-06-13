@@ -25,13 +25,13 @@
     @stack ('scripts')
 </head>
 <body>
-    <div id="app">
+<div id="app">
 
-        @include('admin.partials.nav')
-        <main class="py-4">
-            @yield('content')
+    @include('admin.partials.nav')
+    <main class="py-4">
+        @yield('content')
 
-        </main>
-    </div>
+    </main>
+</div>
 </body>
 </html>

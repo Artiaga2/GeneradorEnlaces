@@ -11,15 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@home')->name('home');
+Route::get('/', 'EnlacesController@index')->name('home');
+
+
 
 Route::group(['middleware' => 'auth'], function() {
+    Route::get('/admin/enlaces', 'EnlacesController@index')->middleware('auth')->name('admin.enlacess');
+    Route::get('/enlaces/{enlace}', 'EnlacesController@show')->name('enlaces.show');
     Route::get('/crear', 'EnlacesController@create');
     Route::post('/crear', 'EnlacesController@store');
     Route::post('/crear/validar', 'Auth\RegisterController@validacionAjax');
