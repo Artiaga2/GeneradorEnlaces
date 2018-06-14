@@ -1,4 +1,4 @@
-@extends('public.layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
     <div class="container">
@@ -14,7 +14,7 @@
                     @include('admin.partials.tags')
                 </div>
                 <hr>
-                {{--@include('public.partials.comments')--}}
+                @include('admin.partials.comentarios')
             </div>
             @include('admin.partials.sidebar')
         </div>

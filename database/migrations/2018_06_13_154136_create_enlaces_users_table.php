@@ -17,6 +17,8 @@ class CreateEnlacesUsersTable extends Migration
 
             $table->integer('enlace_id')->unsigned();
             $table->integer('user_id')->unsigned();
+            $table->integer('positivo');
+            $table->integer('negativo');
             $table->primary(['enlace_id','user_id']);
             $table->foreign('enlace_id')->references('id')->on('enlaces')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

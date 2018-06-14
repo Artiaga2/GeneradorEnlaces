@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Enlace;
+use App\Http\Requests\CreateEnlaceRequest;
 use App\Tag;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class EnlacesController extends Controller
 {
@@ -70,7 +72,7 @@ class EnlacesController extends Controller
         }
 
 
-        return redirect('/home');
+        return redirect('/admin/enlaces');
     }
 
     /**
@@ -83,7 +85,7 @@ class EnlacesController extends Controller
     {
         $enlaces = Enlace::orderBy('created_at', 'desc')->paginate(10);
 
-        return view('public.enlaces.show',
+        return view('admin.enlaces.show',
             [
                 'enlace' => $enlace,
                 'enlaces' => $enlaces,
@@ -94,11 +96,18 @@ class EnlacesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Enlace  $enlace
-     * @return \Illuminate\Http\Response
+     * @return string
      */
     public function edit(Enlace $enlace)
     {
-        //
+        if( Gate::allows('canEdit', $enlace) ) {
+            return view('admin.enlaces.edit', [
+                'enlace' => $enlace,
+                'tags' => $enlace->tags->pluck('nombre')->implode(', ')
+            ]);
+        }
+
+        return "Not allowed";
     }
 
     /**
@@ -108,9 +117,37 @@ class EnlacesController extends Controller
      * @param  \App\Enlace  $enlace
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Enlace $enlace)
+    public function patch(Request $request, Enlace $enlace)
     {
-        //
+
+        $enlace->fill([
+            'titulo'        => $request->input('titulo'),
+            'slug' => str_slug(\request('titulo')),
+            'uri'           => $request->input('uri'),
+            'tipo'          => $request->input('tipo'),
+            'descripcion'   => $request->input('descripcion'),
+            'privacidad'    => $request->input('privacidad'),
+
+        ]);
+
+        $tags = explode(", ",\request('tags'));
+        //dd($tags);
+        $newTags = [];
+        foreach ($tags as $tag){
+            $tag = Tag::firstOrCreate([
+                'nombre' => $tag,
+                'slug' => str_slug($tag)
+            ]);
+            array_push($newTags, $tag);
+        }
+
+        //dd(collect($newTags)->pluck('id')->toArray());
+
+        $enlace->tags()->sync(collect($newTags)->pluck('id')->toArray());
+
+        $enlace->update();
+
+        return redirect('admin/enlaces');
     }
 
     /**

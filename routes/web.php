@@ -15,7 +15,7 @@
 Auth::routes();
 
 Route::get('/', 'EnlacesController@index')->name('home');
-
+Route::post('/enlaces/{enlace}/comentarios', 'ComentariosController@store');
 
 
 Route::group(['middleware' => 'auth'], function() {
@@ -23,5 +23,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/enlaces/{enlace}', 'EnlacesController@show')->name('enlaces.show');
     Route::get('/crear', 'EnlacesController@create');
     Route::post('/crear', 'EnlacesController@store');
+    Route::get('/admin/enlaces/{enlace}/edit', 'EnlacesController@edit')->name('enlace.edit');
+    Route::patch('/admin/enlaces/{enlace}', 'EnlacesController@patch')->name('enlaces.patch');
     Route::post('/crear/validar', 'Auth\RegisterController@validacionAjax');
 });

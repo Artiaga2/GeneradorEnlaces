@@ -17,10 +17,7 @@ class CreateEnlacesTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('categoria_id')->unsigned()->nullable();
-            $table->integer('comentario_id')->unsigned()->nullable();
-            $table->integer('like_id')->unsigned()->nullable();
-            $table->string('titulo');
+            $table->string('titulo')->unique();
             $table->string('uri');
             $table->string('slug')->unique();
             $table->enum('tipo',['enlace', 'PDF', 'imagen', 'nota'])->default('enlace');
@@ -40,6 +37,13 @@ class CreateEnlacesTable extends Migration
      */
     public function down()
     {
+
         Schema::dropIfExists('enlaces');
+
+        Schema::table('enlaces', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+
+            $table->dropColumn('user_id');
+        });
     }
 }

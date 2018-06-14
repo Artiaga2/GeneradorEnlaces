@@ -16,8 +16,11 @@ class CreateComentariosTable extends Migration
         Schema::create('comentarios', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->integer('enlace_id')->unsigned();
             $table->string('mensaje');
             $table->timestamps();
+
+            $table->foreign('enlace_id')->references('id')->on('enlaces')->onDelete('cascade');
 
         });
     }

@@ -45,4 +45,12 @@ class Enlace extends Model
         return 'slug';
     }
 
+    public function addComment($mensaje)
+    {
+        $this->comentarios()->create([
+            'enlace_id' => $this->id,
+            'mensaje' => $mensaje
+        ]);
+    }
+
 }

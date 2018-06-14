@@ -12,13 +12,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        factory(App\Like::class, 1)->create([
-            'id' => 1,
-        ]);
-
-        factory(App\Comentario::class, 1)->create([
-            'id' => 1,
-        ]);
 
 
 
@@ -32,13 +25,21 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        factory(App\Categoria::class, 1)->create([
-            'id' => 1
-        ]);
 
-        factory(App\Enlace::class, 1)->create(['user_id' => 1,'categoria_id' => 1, 'comentario_id' => 1, 'like_id' => 1])->each(function ($enlaces){
+
+        factory(App\Enlace::class, 1)->create(['user_id' => 1,])->each(function ($enlaces){
             $enlaces->tags()->save(factory(App\Tag::class)->make());
         });
+
+        factory(App\Comentario::class, 1)->create([
+            'id' => 1,
+            'enlace_id' => 1
+        ]);
+
+        factory(App\Categoria::class, 1)->create([
+            'id' => 1,
+            'enlace_id' => 1
+        ]);
 
     }
 
