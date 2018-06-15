@@ -60,7 +60,7 @@ class CreateEnlaceRequest extends FormRequest
     }
 
     protected function validarTitulo(){
-        return 'required|string|max:50|min:1';
+        return 'required|unique|string|max:50|min:1';
     }
 
     protected function validarDescripcion(){
@@ -86,6 +86,7 @@ class CreateEnlaceRequest extends FormRequest
     protected function mensajesTitulo(){
         $mensajes = array();
         $mensajes["titulo.required"] = 'Introduzca el titulo';
+        $mensajes["titulo.unique"] = 'Introduzca otro titulo';
         $mensajes["titulo.string"] = 'Introduzca el titulo';
         $mensajes["titulo.max"] = 'Supera el máximo';
         $mensajes["titulo.min"] = 'Tiene que tener un cararcter minimo';

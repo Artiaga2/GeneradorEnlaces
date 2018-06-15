@@ -1,6 +1,7 @@
 <div class="form-group @if( $errors->has('titulo'))has-error @endif">
     <label for="titulo" class="col-md-4 control-label">Titulo</label>
     <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Introduce un titulo">
+    @include('admin.partials.spinner')
 </div>
 @if($errors->has('titulo'))
     @foreach($errors->get('titulo') as $message)
@@ -13,6 +14,7 @@
 <div class="form-group @if( $errors->has('uri'))has-error @endif">
     <label for="uri" class="col-md-4 control-label">Url</label>
     <input type="text" class="form-control" id="uri" name="uri" placeholder="Introduce un url">
+    @include('admin.partials.spinner')
 </div>
 @if($errors->has('uri'))
     @foreach($errors->get('uri') as $message)
@@ -30,6 +32,7 @@
         <option value="imagen">Imagen</option>
         <option value="nota">Nota</option>
     </select>
+    @include('admin.partials.spinner')
 </div>
 @if($errors->has('tipo'))
     @foreach($errors->get('tipo') as $message)
@@ -43,6 +46,7 @@
 <div class="form-group @if( $errors->has('descripcion'))has-error @endif">
     <label for="descripcion" class="col-md-4 control-label">Descripcion</label>
     <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Introduce una descripcion">
+    @include('admin.partials.spinner')
 </div>
 @if($errors->has('descripcion'))
     @foreach($errors->get('descripcion') as $message)
@@ -59,6 +63,7 @@
         <option value="publico">Publico</option>
         <option value="privado">Privado</option>
     </select>
+    @include('admin.partials.spinner')
 </div>
 @if($errors->has('privacidad'))
     @foreach($errors->get('privacidad') as $message)
@@ -73,6 +78,7 @@
 <div class="form-group">
     <label for="tags">Tags</label>
     <input type="text" class="form-control {{ $errors->has('tags') ? 'is-invalid' : '' }}" id="tags" name="tags" value="{{ $tags or old('tags') }}">
+    @include('admin.partials.spinner')
     <small id="tagsHelp" class="form-text text-muted">Añade tags</small>
     @if( $errors->has('tags') )
         <div class="invalid-feedback">
