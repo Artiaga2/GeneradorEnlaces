@@ -8,6 +8,7 @@ use App\Tag;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
 class EnlacesController extends Controller
@@ -107,7 +108,7 @@ class EnlacesController extends Controller
             ]);
         }
 
-        return "Not allowed";
+        return "No se puede editar";
     }
 
     /**
@@ -156,9 +157,75 @@ class EnlacesController extends Controller
      * @param  \App\Enlace  $enlace
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Enlace $enlace)
+    public function delete($id)
     {
-        //
+        $user = Auth::user();
+
+        $enlace = Enlace::where('id', $id)->first();
+
+        if ($enlace != null) {
+
+            $enlace = Enlace::find($id)->delete();
+
+        }
+
+        return 1;
+    }
+
+    public function mostrarDatos()
+    {
+        return view('admin.data.mostrar_datos');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Enlace  $enlaces
+     */
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function mostrarDatosAjax()
+    {
+        $enlaces = Enlace::all();
+        return $enlaces;
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Support\Collection
+     */
+    public function mostrarAjaxUno(Request $request)
+    {
+        $posicionInicial = $request->get("posicionInicial");
+        $numElementos = $request->get("numeroElementos");
+        $enlaces = DB::table("enlaces")
+            ->offset($posicionInicial)
+            ->limit($numElementos)
+            ->get();
+        return $enlaces;
+    }
+
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function mostrarVista(Request $request){
+        $posicionInicial = $request->get("posicionInicial");
+        $numElementos = $request->get("numeroElementos");
+        $enlaces = DB::table("enlaces")
+            ->offset($posicionInicial)
+            ->limit($numElementos)
+            ->get();
+
+        $vista = view('enlaces.index', ['enlaces' => $enlaces]);
+
+        return $vista;
+
     }
 
     protected function validacionAxios(UserAjaxFormRequest $request){

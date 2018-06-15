@@ -5,6 +5,7 @@
         </a>
 
         <a class="navbar-brand" href="{{ url('/') }}/crear">Crear Enlaces</a>
+        <a class="navbar-brand" href="{{ url('/data/mostrar_datos') }}">Cargar datos</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

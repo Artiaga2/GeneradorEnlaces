@@ -148,18 +148,6 @@ function validarTitulo() {
     return resultado;
 }
 
-
-        function validarTituloAxios() {
-
-            axios.post('/register/validar', {
-                name: $("#name").val()
-            }).then(function (response) {
-                gestionarErrores($("#name"), response.data.name);
-            }).catch(function (error) {
-                console.log(error);
-            });
-        }
-
 /***/ })
 
 /******/ });

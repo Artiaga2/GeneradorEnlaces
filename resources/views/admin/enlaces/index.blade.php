@@ -1,5 +1,7 @@
 @extends('admin.layouts.app')
-
+@push('scripts')
+    <script src="{{ asset('js/delete.js') }}" defer></script>
+@endpush
 @section('content')
 
     <div class="container">
@@ -28,9 +30,46 @@
 
                         <a href="/enlaces/{{ $enlace->slug }}" class="btn btn-primary">Leer mas</a>
                         <a href="{{ route('enlace.edit', ['slug' => $enlace->slug]) }}">Edit</a>
+                        <button name="btnModal" data-idEnlace="{{$enlace->id}}" type="button"
+                                class="btn btn-default btn-outline-dark"
+                                data-toggle="modal">Borrar</button>
                     </div>
                     <hr>
                 @endforeach
+
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <!-- Modal header-->
+                            <h2 class="modal-header" style="padding:35px 50px;">
+                                Confirmar borrado de enlace
+                            </h2>
+                            <!-- Modal body-->
+                            <div class="modal-body text-center">
+                                <p>
+                                    ¿Está seguro de querer borrar este enlace?
+                                </p>
+                            </div>
+                            <!-- Modal footer-->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-danger btn-default pull-center"
+                                        data-dismiss="modal">
+                                    <i class="fa fa-remove text-light"></i> Cancelar
+                                </button>
+
+                                <button id="enviar" type="submit"
+                                        class="btn btn-success btn-default pull-center"
+                                        data-idEnlaceEnviar="">
+                                    <i class="fas fa-chevron-right text-light"></i> Aceptar
+                                </button>
+                                <!-- </form>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <nav aria-label="Page navigation example">
                     {{ $enlaces->appends(request()->query())->links() }}
                 </nav>

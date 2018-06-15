@@ -12,5 +12,10 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-    .js('resources/assets/js/validacion.js', 'public/js/validaciones')
+    .js('resources/assets/js/validacion.js', 'public/js')
+    .js('resources/assets/js/validacionForm.js', 'public/js')
+    .js('resources/assets/js/modal.js', 'public/js')
+    .js('resources/assets/js/create.js', 'public/js')
+    .js('resources/assets/js/delete.js', 'public/js')
+    .js('resources/assets/js/cargarVistas.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');

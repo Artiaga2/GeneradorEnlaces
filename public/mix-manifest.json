@@ -1,5 +1,10 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/js/validaciones/validacion.js": "/js/validaciones/validacion.js"
+    "/js/validacionForm.js": "/js/validacionForm.js",
+    "/js/validacion.js": "/js/validacion.js",
+    "/js/modal.js": "/js/modal.js",
+    "/js/delete.js": "/js/delete.js",
+    "/js/create.js": "/js/create.js",
+    "/js/cargarVistas.js": "/js/cargarVistas.js"
 }

@@ -26,4 +26,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/admin/enlaces/{enlace}/edit', 'EnlacesController@edit')->name('enlace.edit');
     Route::patch('/admin/enlaces/{enlace}', 'EnlacesController@patch')->name('enlaces.patch');
     Route::post('/crear/validar', 'Auth\RegisterController@validacionAjax');
+    Route::delete('/enlaces/delete/{id}', 'EnlacesController@delete');
+
+    // Rutas de carga de datos asíncrona.
+    Route::get('/data/mostrar_datos', 'EnlacesController@mostrarDatos');
+    Route::get('/data/mostrarDatosAjax', 'EnlacesController@mostrarDatosAjax');
+    Route::post('/data/mostrarAjaxUno', 'EnlacesController@mostrarAjaxUno');
 });
