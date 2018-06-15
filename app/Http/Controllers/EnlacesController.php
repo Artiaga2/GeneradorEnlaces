@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enlace;
+use App\Http\Requests\CreateEnlaceAjaxRequest;
 use App\Http\Requests\CreateEnlaceRequest;
 use App\Tag;
 use App\User;
@@ -228,8 +229,9 @@ class EnlacesController extends Controller
 
     }
 
-    protected function validacionAxios(UserAjaxFormRequest $request){
-        //Obtenermos todos los valores y devolvemos un array vacio
+    public function validateEnlaceAjax(CreateEnlaceAjaxRequest $request)
+    {
+        //Obtenemos todos los valores y devolvemos un array vacío.
         return array();
     }
 }

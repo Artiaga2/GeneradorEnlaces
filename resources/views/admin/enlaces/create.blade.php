@@ -1,5 +1,7 @@
 @extends('admin.layouts.app')
-
+@push('scripts')
+    <script src="{{ asset('js/validacionForm.js') }}" defer></script>
+@endpush
 @section('content')
 
     @auth()
@@ -11,13 +13,10 @@
                 @include('admin.partials.enlaces_form')
 
 
-                <button class="flex-md-column" type="submit">Enviar</button>
+                <button id="enviar" class="flex-md-column" type="submit">{{ __('Añadir Enlace') }}</button>
             </form>
         </div>
     @endauth
 
-    @push('scripts')
-        <script src="{{ asset('js/validaciones/validacion.js') }}" defer></script>
-    @endpush
 
 @endsection

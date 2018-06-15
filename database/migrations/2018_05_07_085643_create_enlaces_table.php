@@ -38,12 +38,7 @@ class CreateEnlacesTable extends Migration
     public function down()
     {
 
+        Schema::dropIfExists('enlaces_user_id');
         Schema::dropIfExists('enlaces');
-
-        Schema::table('enlaces', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
-
-            $table->dropColumn('user_id');
-        });
     }
 }
