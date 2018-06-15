@@ -47,7 +47,7 @@ class EnlacesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateEnlaceRequest $request)
     {
         $user = \auth()->user()->id;
 

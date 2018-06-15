@@ -7,7 +7,7 @@
     @auth()
 
         <div class="container my-5 bg-primary text-warning">
-            <form action="{{ url('/') }}/crear" method="post">
+            <form id="form" action="{{ url('/') }}/crear" method="post">
                 {{ csrf_field() }}
 
                 @include('admin.partials.enlaces_form')

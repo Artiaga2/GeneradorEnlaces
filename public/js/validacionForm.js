@@ -124,7 +124,7 @@ function validate(field) {
     var data = {};
     data[field] = $("#" + field).val();
 
-    // $("#" + field).next().css("display","block");
+    $("#" + field).next().css("display", "block");
 
     axios.post('/enlaces/validate', data).then(function (response) {
         gestionarErrores($("#" + field), response.data[field]);

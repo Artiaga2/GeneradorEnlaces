@@ -1,0 +1,11 @@
+ * Indicar los archivos de javascripts que se usan
+ cargarVistas.js, create.js, delete.js, modal.js, validacion.js, validacionForm.js.
+
+  * Indicar las funcionalidades de la aplicación que tienen javascript
+  Borrar asincrono.
+
+  * Indicar que validaciones se llevan a cabo en los formularios
+  Validacion asincrona en el formulario create
+
+  * Indicar todas las peticiones asíncronas al servidor.
+  Borrar asincrono
